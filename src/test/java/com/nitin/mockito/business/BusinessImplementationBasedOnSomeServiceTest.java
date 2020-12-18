@@ -31,7 +31,7 @@ public class BusinessImplementationBasedOnSomeServiceTest {
 
 		List<String> filteredTodos = serviceImpl.filteredStringsBasedOnArgument("Spring");
 
-		Assert.assertEquals(2, filteredTodos.size());
+		assertEquals(2, filteredTodos.size());
 
 	}
 
@@ -48,7 +48,7 @@ public class BusinessImplementationBasedOnSomeServiceTest {
 
 		List<String> filteredTodos = serviceImpl.filteredStringsBasedOnArgument("dummyFilter");
 
-		Assert.assertEquals(0 , filteredTodos.size());
+		assertEquals(0 , filteredTodos.size());
 	}
 
 }
