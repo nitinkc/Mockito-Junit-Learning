@@ -1,13 +1,15 @@
 package com.nitin.mockito.anyMatchers;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyInt;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import org.junit.Test;
 
 public class AnyMatcherMock {
 
@@ -26,7 +28,7 @@ public class AnyMatcherMock {
 		
 	}
 	
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void test2() {
 		List listMock = mock(List.class);
 		

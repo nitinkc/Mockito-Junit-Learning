@@ -1,16 +1,16 @@
 package com.nitin.mockito.business;
 
-import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.nitin.mockito.data.api.SomeService;
 
-import junit.framework.Assert;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class BusinessImplementationBasedOnSomeServiceTest {
 
