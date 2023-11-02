@@ -2,6 +2,7 @@ package com.nitin.mockito.business;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -24,6 +25,7 @@ public class BusinessImplementationBasedOnSomeService {
 		
  		filteredStrings = someService.retrieveStringsFromDbOrService()
 				.stream()
+				//.filter(Objects::isNull)
 				.filter(str -> StringUtils.contains(str,arg))
 				.collect(Collectors.toList());
 		
