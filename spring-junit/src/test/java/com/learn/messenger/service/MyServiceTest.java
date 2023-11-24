@@ -1,7 +1,5 @@
 package com.learn.messenger.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,13 +14,13 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class MyClassTest {
+class MyServiceTest {
 
     @Mock
     private ExternalService externalService;
 
     @InjectMocks
-    private MyClass myClass;
+    private MyService myService;
 
     @BeforeEach
     void setUp() {
@@ -32,7 +30,7 @@ class MyClassTest {
     @Test
     @DisplayName("Test Greeting Message")
     void testGreet() {
-        String result = myClass.greet("John");
+        String result = myService.greet("John");
         assertEquals("Hello, John! Mocked External Message", result);
     }
 }

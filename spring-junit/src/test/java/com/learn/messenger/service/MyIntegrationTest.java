@@ -12,7 +12,8 @@ import static org.mockito.Mockito.when;
 class MyIntegrationTest {
 
     @Autowired
-    private MyClass myClass;
+   // @InjectMocks
+    private MyService myService;
 
     @MockBean
     private ExternalService externalService;
@@ -20,7 +21,7 @@ class MyIntegrationTest {
     @Test
     void testGreetIntegration() {
         when(externalService.getExternalMessage()).thenReturn("Mocked External Message");
-        String result = myClass.greet("Jane");
+        String result = myService.greet("Jane");
         assertEquals("Hello, Jane! Mocked External Message", result);
     }
 }

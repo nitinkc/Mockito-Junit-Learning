@@ -2,24 +2,31 @@ package com.learn.messenger.service;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class CalculatorTest {
-
+    @InjectMocks
+    private Calculator calculator;  // It is typically used in unit tests when you want to mock the dependencies of the class under test.
     @Autowired
-    private Calculator calculator;  // Spring autowired for integration testing
-
+    MyService myService;//Spring injects the dependency into the field or constructor of the class.
+    // This is commonly used in integration tests or when you are testing Spring components that rely on other Spring-managed beans.
     @Mock
     private SomeDependency someDependency;  // Mocking a dependency for unit testing
+    @Mock
+    private SomeDependencyImpl someDependencyImpl;  // Mocking a dependency for unit testing
 
     @BeforeEach
     void setUp() {
@@ -49,9 +56,17 @@ class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    void parameterizedTest(int value) {
-        int result = calculator.add(value, 5);
-        assertEquals(value + 5, result, "Parameterized addition test failed");
+    @NullSource	// pass a null value
+    void parameterizedTest(Integer value) {
+        if (null != value) {
+            Integer result = calculator.add(value, 4);
+            assertEquals(value + 4, result, "Parameterized addition test failed");//The message will be printed when the assertion fails,
+        } else {
+            IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                calculator.add(value, 4);
+            });
+
+        }
     }
 
     @RepeatedTest(3)
@@ -85,13 +100,20 @@ class CalculatorTest {
     @Test
     void verificationModeTest() {
         someDependency.someMethod();
-        verify(someDependency, times(1)).someMethod();
+        someDependency.someMethod();
+        someDependency.someMethod();
+
+        verify(someDependency, atLeastOnce()).someMethod();
+        verify(someDependency, atLeast(2)).someMethod();
+        verify(someDependency, atMost(3)).someMethod();
+        verify(someDependencyImpl, never()).verifyMethod();
+        verify(someDependency, times(3)).someMethod();
     }
 
     @Test
-    void integrationTest() {
+    void springIntegrationTest() {
         // Integration test using the Spring context
-        int result = calculator.add(5, 5);
-        assertEquals(10, result, "Integration test failed");
+        String result = myService.greet("John Doe");
+        assertEquals("Hello, John Doe!", result, "Integration test failed");
     }
 }
