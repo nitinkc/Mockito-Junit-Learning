@@ -6,7 +6,7 @@ import org.mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
-class MyComponentTest {
+class MyArgumentCaptorTest {
 
     @Mock private MyService myService;
     @InjectMocks private MyComponent myComponent;
