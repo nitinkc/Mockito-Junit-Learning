@@ -28,6 +28,9 @@ class CalculatorTest {
     @Mock
     private SomeDependencyImpl someDependencyImpl;  // Mocking a dependency for unit testing
 
+    @Captor
+    private ArgumentCaptor<String> dataCaptor;
+
     @BeforeEach
     void setUp() {
         // Setup logic before each test method
