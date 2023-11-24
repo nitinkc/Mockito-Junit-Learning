@@ -19,7 +19,7 @@ public class MyService {
     }
 
     public String greetExternalService(String name) {
-        return "Hello, " + name + "!" + externalService.getExternalMessage();
+        return "Hello, " + name + "! " + externalService.getExternalMessage();
     }
     public String getValue() {
         // Some complex logic here

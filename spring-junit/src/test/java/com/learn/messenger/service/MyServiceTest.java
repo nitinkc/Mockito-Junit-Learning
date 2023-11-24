@@ -30,7 +30,7 @@ class MyServiceTest {
     @Test
     @DisplayName("Test Greeting Message")
     void testGreet() {
-        String result = myService.greet("John");
+        String result = myService.greetExternalService("John");
         assertEquals("Hello, John! Mocked External Message", result);
     }
 }

@@ -19,7 +19,7 @@ class MyIntegrationTest {
 
     @Test
     void testGreetIntegration() {
-        when(externalService.getExternalMessage()).thenReturn(" Mocked External Message");
+        when(externalService.getExternalMessage()).thenReturn("Mocked External Message");
         String result = myService.greetExternalService("Jane");
         assertEquals("Hello, Jane! Mocked External Message", result);
     }
